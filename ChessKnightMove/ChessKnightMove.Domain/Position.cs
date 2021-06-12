@@ -1,21 +1,21 @@
 ﻿namespace ChessKnightMove.Domain
 {
-    public record Postition
+    public record Position
     {
         public const char MIN_COLUMN = 'A';
         public const char MAX_COLUMN = 'H';
         public const int MIN_ROW = 1;
         public const int MAX_ROW = 8;
 
-        public static Postition Empty { get; } = new Postition(' ', 0);
+        public static Position Empty { get; } = new Position(' ', 0);
 
         public char Column { get; }
         public int Row { get; }
 
-        private Postition(char column, int row) =>
+        private Position(char column, int row) =>
             (Column, Row) = (column, row);
 
-        public Postition Move(PositionDelta delta)
+        public Position Move(PositionDelta delta)
         {
             if(!Board.TryMove(Column, delta.X, out char column))
             {
@@ -24,15 +24,15 @@
             return Create(column, Row + delta.Y);
         }
 
-        public static Postition Create(char column, int row)
+        public static Position Create(char column, int row)
         {
             if(!Board.IsInBounds(column, row))
             {
                 return Empty;
             }
-            return new Postition(column, row);
+            return new Position(column, row);
         }
-        public static Postition FromString(string value)
+        public static Position FromString(string value)
         {
             if (IsValidPostions(value))
             {

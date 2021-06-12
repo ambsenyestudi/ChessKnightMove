@@ -11,8 +11,8 @@ namespace ChessKnightMove.Test.Pieces
         [InlineData("A1", "C2")]
         public void Contain_move_when_at_corner(string knighPositionRaw, string expected)
         {
-            var knighPosition = Postition.FromString(knighPositionRaw);
-            var exptectedPosition = Postition.FromString(expected);
+            var knighPosition = Position.FromString(knighPositionRaw);
+            var exptectedPosition = Position.FromString(expected);
             var sut = new Knight(knighPosition);
             var postionList = sut.ListPossibleMovements();
             Assert.Contains(exptectedPosition, postionList);
@@ -26,8 +26,26 @@ namespace ChessKnightMove.Test.Pieces
         [InlineData("C2", "D4")]
         public void Contain_move_when_at_second_row(string knighPositionRaw, string expected)
         {
-            var knighPosition = Postition.FromString(knighPositionRaw);
-            var exptectedPosition = Postition.FromString(expected);
+            var knighPosition = Position.FromString(knighPositionRaw);
+            var exptectedPosition = Position.FromString(expected);
+            var sut = new Knight(knighPosition);
+            var postionList = sut.ListPossibleMovements();
+            Assert.Contains(exptectedPosition, postionList);
+        }
+
+        [Theory]
+        [InlineData("D5", "C3")]
+        [InlineData("D5", "E3")]
+        [InlineData("D5", "B4")]
+        [InlineData("D5", "F4")]
+        [InlineData("D5", "B6")]
+        [InlineData("D5", "F6")]
+        [InlineData("D5", "C7")]
+        [InlineData("D5", "E7")]
+        public void Contain_move_all_possible_moves (string knighPositionRaw, string expected)
+        {
+            var knighPosition = Position.FromString(knighPositionRaw);
+            var exptectedPosition = Position.FromString(expected);
             var sut = new Knight(knighPosition);
             var postionList = sut.ListPossibleMovements();
             Assert.Contains(exptectedPosition, postionList);

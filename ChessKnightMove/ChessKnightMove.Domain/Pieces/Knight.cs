@@ -1,62 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace ChessKnightMove.Domain.Pieces
 {
     public class Knight
     {
-        private int longMove = 2;
-        private int shorMove = 1;
-        private Postition position;
+        private const int TWO_SQUARE_MOVE = 2;
+        private const int ONE_SQUARE_MOVE = 1;
+        private Position position;
 
-        public Knight(Postition position)
+        public Knight(Position position)
         {
             this.position = position;
         }
 
-        public List<Postition> ListPossibleMovements()
-        {
-            var result = new List<Postition>();
-            result.AddRange(FigureVerticalMoves());
-            result.AddRange(FigureHorizontalMoves());
-            return result;
-        }
-
-        private List<Postition> FigureVerticalMoves()
-        {
-            var deltaColumn = new int[] { -shorMove, shorMove };
-            var deltaRow = new int[] { -longMove, longMove };
-            return FigurePositions(deltaColumn, deltaRow)
-                .Where(x => x != Postition.Empty)
+        public List<Position> ListPossibleMovements() =>
+            FigureVerticalMoves()
+                .Concat(FigureHorizontalMoves())
+                .Where(pos => pos != Position.Empty)
                 .ToList();
-        }
 
-        private List<Postition> FigureHorizontalMoves()
-        {
-            var deltaColumn = new int[] { -longMove, longMove };
-            var deltaRow = new int[] { -shorMove, shorMove };
-            return FigurePositions(deltaColumn, deltaRow)
-                .Where(x=> x != Postition.Empty)
-                .ToList();
-        }
+        private IEnumerable<Position> FigureVerticalMoves() =>
+            new List<KnightMoves>{
+                KnightMoves.ForwardLeft,
+                KnightMoves.ForwardRight,
+                KnightMoves.BackwardLeft,
+                KnightMoves.BackwardRight,
+            }.Select(x => x.GetNext(position))
+            .Where(pos => pos != Position.Empty);
+        private IEnumerable<Position> FigureHorizontalMoves() =>
+            FigurePositionsFromDelta(GetHorizontalMoves()); 
 
-        private List<Postition> FigurePositions(int[] deltaColumns, int[] deltaRows)
-        {
-            var resultList = new List<Postition>();
-            for (int y = 0; y < deltaRows.Length; y++)
+        private IEnumerable<Position> FigurePositionsFromDelta(List<PositionDelta> positionDeltas) =>
+            positionDeltas.Select(del => position.Move(del));
+
+        /// <summary>
+        /// Generates moves for 2 squares horizontal and 1 vertical
+        /// </summary>
+        private List<PositionDelta> GetHorizontalMoves() =>
+            FigureMoves(TWO_SQUARE_MOVE, ONE_SQUARE_MOVE);
+
+        /// <summary>
+        /// Generates moves for 1 squares horizontal and 2 vertical
+        /// </summary>
+        private List<PositionDelta> GetVertialMoves() =>
+            FigureMoves(ONE_SQUARE_MOVE, TWO_SQUARE_MOVE);
+
+        private List<PositionDelta> FigureMoves(int xRange, int yRange) =>
+            new List<PositionDelta>()
             {
-                var currDeltaRow = deltaRows[y];
-                for (int x = 0; x < deltaColumns.Length; x++)
-                {
-                    var currDeltaColumn = deltaColumns[x];
-                    var delta = new PositionDelta(currDeltaColumn, currDeltaRow);
-                    var currPostion = position.Move(delta);
-                    resultList.Add(currPostion);
-                }
-                
-            }
-            return resultList;
-        }
+                new PositionDelta(-xRange, -yRange),
+                new PositionDelta(xRange, -yRange),
+                new PositionDelta(-xRange, yRange),
+                new PositionDelta(xRange, yRange),
+            };
     }
 }
