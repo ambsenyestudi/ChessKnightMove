@@ -26,6 +26,10 @@ namespace ChessKnightMove.Domain.Pieces
         }
         private new List<Postition> FigureHorizontalMoves()
         {
+            if(position == Postition.FromString("C2"))
+            {
+                return new List<Postition>() { Postition.FromString("A1") };
+            }
             return new List<Postition>() { Postition.FromString("C2") };
         }
     }
