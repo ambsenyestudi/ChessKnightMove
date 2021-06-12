@@ -1,16 +1,21 @@
-﻿using ChessKnightMove.Domain.Pieces;
+﻿using ChessKnightMove.Domain;
+using ChessKnightMove.Domain.Pieces;
 using Xunit;
 
 namespace ChessKnightMove.Test.Pieces
 {
     public class KnightShould
     {
-        [Fact]
-        public void Contain_move()
+        [Theory]
+        [InlineData("A1", "B3")]
+        [InlineData("A1", "C2")]
+        public void Contain_move(string knighPositionRaw, string expected)
         {
-            var sut = new Knight("A1");
+            var knighPosition = Postition.FromString(knighPositionRaw);
+            var exptectedPosition = Postition.FromString(expected);
+            var sut = new Knight(knighPosition);
             var postionList = sut.ListPossibleMovements();
-            Assert.Contains("B3", postionList);
+            Assert.Contains(exptectedPosition, postionList);
         }
     }
 }

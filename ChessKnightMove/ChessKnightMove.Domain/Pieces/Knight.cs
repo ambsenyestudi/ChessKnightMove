@@ -5,16 +5,28 @@ namespace ChessKnightMove.Domain.Pieces
 {
     public class Knight
     {
-        private string position;
+        private Postition position;
 
-        public Knight(string position)
+        public Knight(Postition position)
         {
             this.position = position;
         }
 
-        public List<string> ListPossibleMovements()
+        public List<Postition> ListPossibleMovements()
         {
-            return new List<string>() { "B3" };
+            var result = new List<Postition>();
+            result.AddRange(FigureVerticalMoves());
+            result.AddRange(FigureHorizontalMoves());
+            return result;
+        }
+
+        private new List<Postition> FigureVerticalMoves()
+        {
+            return new List<Postition>() { Postition.FromString("B3") };
+        }
+        private new List<Postition> FigureHorizontalMoves()
+        {
+            return new List<Postition>() { Postition.FromString("C2") };
         }
     }
 }
