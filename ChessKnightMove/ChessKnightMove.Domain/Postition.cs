@@ -15,13 +15,18 @@
         private Postition(char column, int row) =>
             (Column, Row) = (column, row);
 
+        public Postition Move(int deltaColumn, int deltaRow)
+        {
+            if(!Board.TryMove(Column, deltaColumn, out char column))
+            {
+                return Empty;
+            }
+            return Create(column, Row + deltaRow);
+        }
+
         public static Postition Create(char column, int row)
         {
-            if(
-                column < MIN_COLUMN || 
-                column > MAX_COLUMN ||
-                row < MIN_ROW ||
-                row > MAX_ROW)
+            if(!Board.IsInBounds(column, row))
             {
                 return Empty;
             }
