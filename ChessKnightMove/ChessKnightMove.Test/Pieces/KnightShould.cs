@@ -19,6 +19,9 @@ namespace ChessKnightMove.Test.Pieces
         }
         [Theory]
         [InlineData("C2", "A1")]
+        [InlineData("C2", "A3")]
+        [InlineData("C2", "E1")]
+        [InlineData("C2", "E3")]
         public void Contain_move_when_at_second_row(string knighPositionRaw, string expected)
         {
             var knighPosition = Postition.FromString(knighPositionRaw);
