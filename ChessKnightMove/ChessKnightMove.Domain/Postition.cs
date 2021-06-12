@@ -15,13 +15,13 @@
         private Postition(char column, int row) =>
             (Column, Row) = (column, row);
 
-        public Postition Move(int deltaColumn, int deltaRow)
+        public Postition Move(PositionDelta delta)
         {
-            if(!Board.TryMove(Column, deltaColumn, out char column))
+            if(!Board.TryMove(Column, delta.X, out char column))
             {
                 return Empty;
             }
-            return Create(column, Row + deltaRow);
+            return Create(column, Row + delta.Y);
         }
 
         public static Postition Create(char column, int row)

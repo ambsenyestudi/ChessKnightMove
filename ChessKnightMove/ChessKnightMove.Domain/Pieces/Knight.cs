@@ -50,7 +50,8 @@ namespace ChessKnightMove.Domain.Pieces
                 for (int x = 0; x < deltaColumns.Length; x++)
                 {
                     var currDeltaColumn = deltaColumns[x];
-                    var currPostion = position.Move(currDeltaColumn, currDeltaRow);
+                    var delta = new PositionDelta(currDeltaColumn, currDeltaRow);
+                    var currPostion = position.Move(delta);
                     resultList.Add(currPostion);
                 }
                 
