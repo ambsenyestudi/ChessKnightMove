@@ -23,23 +23,16 @@ namespace ChessKnightMove.Domain.Pieces
             return result;
         }
 
-        private new List<Postition> FigureVerticalMoves()
+        private List<Postition> FigureVerticalMoves()
         {
-            return new List<Postition>() { Postition.FromString("B3") };
-        }
-        private new List<Postition> FigureHorizontalMoves()
-        {
-            return GetHorizontalPostitions();
-            /*
-            if (position == Postition.FromString("C2"))
-            {
-                return GetLeftPostitions();
-            }
-            return new List<Postition>() { Postition.FromString("C2") };
-            */
+            var deltaColumn = new int[] { -shorMove, shorMove };
+            var deltaRow = new int[] { -longMove, longMove };
+            return FigurePositions(deltaColumn, deltaRow)
+                .Where(x => x != Postition.Empty)
+                .ToList();
         }
 
-        private List<Postition> GetHorizontalPostitions()
+        private List<Postition> FigureHorizontalMoves()
         {
             var deltaColumn = new int[] { -longMove, longMove };
             var deltaRow = new int[] { -shorMove, shorMove };
