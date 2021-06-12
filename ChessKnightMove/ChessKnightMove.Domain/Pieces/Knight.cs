@@ -5,8 +5,6 @@ namespace ChessKnightMove.Domain.Pieces
 {
     public class Knight
     {
-        private const int TWO_SQUARE_MOVE = 2;
-        private const int ONE_SQUARE_MOVE = 1;
         private Position position;
 
         public Knight(Position position)
@@ -26,33 +24,15 @@ namespace ChessKnightMove.Domain.Pieces
                 KnightMoves.ForwardRight,
                 KnightMoves.BackwardLeft,
                 KnightMoves.BackwardRight,
-            }.Select(x => x.GetNext(position))
-            .Where(pos => pos != Position.Empty);
+            }.Select(x => x.GetNext(position));
         private IEnumerable<Position> FigureHorizontalMoves() =>
-            FigurePositionsFromDelta(GetHorizontalMoves()); 
+            new List<KnightMoves>{
+                KnightMoves.RightForward,
+                KnightMoves.LeftForward,
+                KnightMoves.RightBackward,
+                KnightMoves.LeftBackward,
+            }.Select(x => x.GetNext(position));
 
-        private IEnumerable<Position> FigurePositionsFromDelta(List<PositionDelta> positionDeltas) =>
-            positionDeltas.Select(del => position.Move(del));
-
-        /// <summary>
-        /// Generates moves for 2 squares horizontal and 1 vertical
-        /// </summary>
-        private List<PositionDelta> GetHorizontalMoves() =>
-            FigureMoves(TWO_SQUARE_MOVE, ONE_SQUARE_MOVE);
-
-        /// <summary>
-        /// Generates moves for 1 squares horizontal and 2 vertical
-        /// </summary>
-        private List<PositionDelta> GetVertialMoves() =>
-            FigureMoves(ONE_SQUARE_MOVE, TWO_SQUARE_MOVE);
-
-        private List<PositionDelta> FigureMoves(int xRange, int yRange) =>
-            new List<PositionDelta>()
-            {
-                new PositionDelta(-xRange, -yRange),
-                new PositionDelta(xRange, -yRange),
-                new PositionDelta(-xRange, yRange),
-                new PositionDelta(xRange, yRange),
-            };
+        
     }
 }

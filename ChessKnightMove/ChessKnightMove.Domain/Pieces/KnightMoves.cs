@@ -11,10 +11,19 @@
         public static KnightMoves ForwardRight { get; } =
             new KnightMoves(new PositionDelta(ONE_SQUARE_MOVE, TWO_SQUARE_MOVE));
 
+        public static KnightMoves RightForward { get; } =
+            new KnightMoves(new PositionDelta(TWO_SQUARE_MOVE, - ONE_SQUARE_MOVE));
+        public static KnightMoves RightBackward { get; } =
+            new KnightMoves(new PositionDelta(TWO_SQUARE_MOVE, ONE_SQUARE_MOVE));
+
         public static KnightMoves BackwardLeft { get; } =
             new KnightMoves(new PositionDelta(-ONE_SQUARE_MOVE, -TWO_SQUARE_MOVE));
         public static KnightMoves BackwardRight { get; } =
             new KnightMoves(new PositionDelta(ONE_SQUARE_MOVE, -TWO_SQUARE_MOVE));
+        public static KnightMoves LeftForward { get; } =
+           new KnightMoves(new PositionDelta(-TWO_SQUARE_MOVE, -ONE_SQUARE_MOVE));
+        public static KnightMoves LeftBackward { get; } =
+            new KnightMoves(new PositionDelta(-TWO_SQUARE_MOVE, ONE_SQUARE_MOVE));
 
 
         private KnightMoves(PositionDelta delta)
