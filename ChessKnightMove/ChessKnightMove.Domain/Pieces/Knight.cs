@@ -14,7 +14,7 @@ namespace ChessKnightMove.Domain.Pieces
 
         public List<string> ListPossibleMovements()
         {
-            return new List<string>();
+            return new List<string>() { "B3" };
         }
     }
 }
