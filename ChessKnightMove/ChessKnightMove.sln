@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKnightMove.Domain", "ChessKnightMove.Domain\ChessKnightMove.Domain.csproj", "{02B11E1C-2685-4C7D-9997-4F690DB4A3A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKnightMove.Test", "ChessKnightMove.Test\ChessKnightMove.Test.csproj", "{B8E0F744-86D4-4183-A739-C17C15A28FA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02B11E1C-2685-4C7D-9997-4F690DB4A3A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B11E1C-2685-4C7D-9997-4F690DB4A3A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B11E1C-2685-4C7D-9997-4F690DB4A3A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B11E1C-2685-4C7D-9997-4F690DB4A3A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8E0F744-86D4-4183-A739-C17C15A28FA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E0F744-86D4-4183-A739-C17C15A28FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E0F744-86D4-4183-A739-C17C15A28FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E0F744-86D4-4183-A739-C17C15A28FA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2E0384B-95C2-46F2-96B3-30D8299A6100}
+	EndGlobalSection
+EndGlobal
